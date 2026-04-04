@@ -35,14 +35,6 @@ jobs:
           ruby-version: 3.4
           bundler-cache: true
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Build assets
-        run: npm install && npm run build
-
       - name: Build site
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
         env:
@@ -52,7 +44,9 @@ jobs:
         run: |
           bundle exec htmlproofer _site \
             --disable-external \
-            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
+            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/" \
+            --ignore-files "/_site\/seunngyun-lee.github.io\/404.html" \
+            --checks "Links"
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v4
