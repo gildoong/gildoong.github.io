@@ -1,8 +1,8 @@
 ---
 title: "데이터 저장소의 진화 — Warehouse, Lake, Lakehouse는 왜 생겼나"
 date: 2025-01-15 11:00:00 +0900
-categories: [Study Log, DE]
-tags: [data-warehouse, data-lake, lakehouse, oltp, olap, data-engineering]
+categories: [Study Log, Data Engineering]
+tags: [Data Engineering, data-warehouse, data-lake, lakehouse]
 ---
 
 데이터 엔지니어링을 공부하다 보면 Data Warehouse, Data Lake, Lakehouse라는 단어를 자주 만난다.  
