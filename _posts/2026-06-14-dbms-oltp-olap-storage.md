@@ -1,7 +1,7 @@
 ---
 title: "DBMS 내부 구조 — OLTP/OLAP 저장 방식과 데이터를 찾는 전략"
 date: 2026-06-14 22:00:00 +0900
-categories: [Study Log, Data Engineering]
+categories: [Data Engineering, 개념 정리, DBMS 내부 구조]
 tags: [oltp, olap, b-tree, partitioning, clustering, z-ordering, data-engineering]
 ---
 
