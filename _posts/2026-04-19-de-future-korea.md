@@ -1,9 +1,10 @@
 ---
 title: "AI 시대, 데이터 엔지니어의 미래는? — 한국 시장 중심으로"
 date: 2026-04-19 09:00:00 +0900
-categories: [Data Engineering, 프로젝트, 커리어 분석]
+categories: [Data Engineering, 프로젝트]
 tags: [Data Engineering,Data Analytic, DE, DA, AI, career]
 description: 신입 DE를 목표로 하는 입장에서 솔직하게 바라본 채용 시장 현황과 앞으로 살아남기 위한 방향성 정리
+subcategory: 커리어 분석
 ---
 
 ## 먼저, 불편한 진실부터
