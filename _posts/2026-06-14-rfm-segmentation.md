@@ -1,7 +1,7 @@
 ---
 title: "RFM 고객 세분화 분석이란?"
 date: 2026-06-14 22:00:00 +0900
-categories: [Study Log, Data Analytics]
+categories: [Data Analytics, 개념 정리, 고객 세분화]
 tags: [rfm, crm, segmentation, marketing, data-analytics]
 ---
 
