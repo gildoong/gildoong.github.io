@@ -1,8 +1,9 @@
 ---
 title: "RFM 고객 세분화 분석이란?"
 date: 2026-06-14 22:00:00 +0900
-categories: [Data Analytics, 개념 정리, 고객 세분화]
+categories: [Data Analytics, 개념 정리]
 tags: [rfm, crm, segmentation, marketing, data-analytics]
+subcategory: RFM
 ---
 
 RFM 고객 세분화 분석은 종종 CRM을 하는 경우 사용하는 기법이라고 한다. CRM이란 Customer Relationship Management, 고객 관계 관리이며 이는 고객 데이터를 모아 관계를 관리하는 것이라고 생각할 수 있다.
