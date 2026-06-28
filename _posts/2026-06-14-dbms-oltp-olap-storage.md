@@ -1,8 +1,9 @@
 ---
 title: "DBMS 내부 구조 — OLTP/OLAP 저장 방식과 데이터를 찾는 전략"
 date: 2026-06-14 22:00:00 +0900
-categories: [Data Engineering, 개념 정리, DBMS 내부 구조]
+categories: [Data Engineering, 개념 정리]
 tags: [oltp, olap, b-tree, partitioning, clustering, z-ordering, data-engineering]
+subcategory: OLTP/OLAP
 ---
 
 DBMS에서 SQL 쿼리를 통해 빠른 시간에 결과를 돌려주는 단순한 인터페이스 덕분에 보통 데이터베이스가 단순한 시스템이라고 하지만 사실이 아니다.
