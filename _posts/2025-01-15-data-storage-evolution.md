@@ -1,7 +1,7 @@
 ---
 title: "데이터 저장소의 진화 — Warehouse, Lake, Lakehouse는 왜 생겼나"
 date: 2025-01-15 11:00:00 +0900
-categories: [Study Log, Data Engineering]
+categories: [Data Engineering, 개념 정리, 데이터 저장소]
 tags: [Data Engineering, data-warehouse, data-lake, lakehouse]
 ---
 
