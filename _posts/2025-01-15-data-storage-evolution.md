@@ -4,6 +4,7 @@ date: 2025-01-15 11:00:00 +0900
 categories: [Data Engineering, 개념 정리]
 tags: [Data Engineering, data-warehouse, data-lake, lakehouse]
 subcategory: Lakehouse
+subcategory_tag: lakehouse
 ---
 
 데이터 엔지니어링을 공부하다 보면 Data Warehouse, Data Lake, Lakehouse라는 단어를 자주 만난다.  
