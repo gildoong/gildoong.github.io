@@ -8,12 +8,10 @@ layout: page
 {% assign LIST_PREFIX = 'l_' %}
 {% assign group_index = 0 %}
 
-{% comment %} 대분류 고정 순서 정의 {% endcomment %}
 {% assign top_order = "Data Engineering,Data Analytics,AI/LLM,SQL,Python,AWS" | split: "," %}
 
 {% for top_name in top_order %}
 
-  {% comment %} 이 대분류에 속하는 포스트만 추출 {% endcomment %}
   {% assign top_posts = "" | split: "" %}
   {% for post in site.posts %}
     {% if post.categories[0] == top_name %}
@@ -24,7 +22,6 @@ layout: page
   {% assign top_posts_size = top_posts | size %}
   {% if top_posts_size == 0 %}{% continue %}{% endif %}
 
-  {% comment %} 이 대분류 안의 중분류 목록 {% endcomment %}
   {% assign sub_categories = "" | split: "" %}
   {% for post in top_posts %}
     {% assign second_category = post.categories[1] %}
@@ -38,7 +35,6 @@ layout: page
   {% assign sub_categories_size = sub_categories | size %}
 
   <div class="card categories">
-    <!-- 대분류 헤더 -->
     <div
       id="{{ HEAD_PREFIX }}{{ group_index }}"
       class="card-header d-flex justify-content-between hide-border-bottom"
@@ -64,7 +60,6 @@ layout: page
           {% endif %}
         </span>
       </span>
-
       {% if sub_categories_size > 0 %}
         <a
           href="#{{ LIST_PREFIX }}{{ group_index }}"
@@ -82,14 +77,13 @@ layout: page
       {% endif %}
     </div>
 
-    <!-- 중분류 목록 -->
     {% if sub_categories_size > 0 %}
       <div id="{{ LIST_PREFIX }}{{ group_index }}" class="collapse show" aria-expanded="true">
         <ul class="list-group">
           {% for sub_cat in sub_categories %}
             {% assign sub_index = forloop.index %}
 
-            {% comment %} 이 중분류에 속하는 포스트만 카운트 {% endcomment %}
+            {% comment %} 이 중분류에 해당하는 포스트만 카운트 {% endcomment %}
             {% assign sub_posts = "" | split: "" %}
             {% for post in top_posts %}
               {% if post.categories[1] == sub_cat %}
@@ -98,16 +92,17 @@ layout: page
             {% endfor %}
             {% assign sub_posts_size = sub_posts | size %}
 
-            {% comment %} 소분류(subcategory) 수집 {% endcomment %}
-            {% assign sub_tags = "" | split: "" %}
+            {% comment %} subcategory 이름 + tag 수집 (중복 제거) {% endcomment %}
+            {% assign sub_items = "" | split: "" %}
             {% for post in sub_posts %}
-              {% if post.subcategory %}
-                {% unless sub_tags contains post.subcategory %}
-                  {% assign sub_tags = sub_tags | push: post.subcategory %}
+              {% if post.subcategory and post.subcategory_tag %}
+                {% assign item = post.subcategory | append: "|" | append: post.subcategory_tag %}
+                {% unless sub_items contains item %}
+                  {% assign sub_items = sub_items | push: item %}
                 {% endunless %}
               {% endif %}
             {% endfor %}
-            {% assign sub_tags_size = sub_tags | size %}
+            {% assign sub_items_size = sub_items | size %}
 
             <li class="list-group-item border-0 py-2">
               <div class="d-flex justify-content-between align-items-center">
@@ -124,8 +119,7 @@ layout: page
                     {% endif %}
                   </span>
                 </span>
-
-                {% if sub_tags_size > 0 %}
+                {% if sub_items_size > 0 %}
                   <a
                     href="#sub_l_{{ group_index }}_{{ sub_index }}"
                     data-bs-toggle="collapse"
@@ -137,13 +131,15 @@ layout: page
                 {% endif %}
               </div>
 
-              <!-- 소분류 pill 버튼 -->
-              {% if sub_tags_size > 0 %}
+              {% if sub_items_size > 0 %}
                 <div id="sub_l_{{ group_index }}_{{ sub_index }}" class="collapse mt-2 ps-4 pb-1">
                   <div class="d-flex flex-wrap" style="gap:0.4rem;">
-                    {% for stag in sub_tags %}
-                      {% capture _stag_url %}/categories/{{ stag | slugify | url_encode }}/{% endcapture %}
-                      <a href="{{ _stag_url | relative_url }}"
+                    {% for item in sub_items %}
+                      {% assign parts = item | split: "|" %}
+                      {% assign label = parts[0] %}
+                      {% assign tag_slug = parts[1] | slugify %}
+                      {% capture tag_url %}/tags/{{ tag_slug }}/{% endcapture %}
+                      <a href="{{ tag_url | relative_url }}"
                          class="btn btn-sm"
                          style="border-radius:999px; font-size:0.78rem; font-weight:500;
                                 padding:0.25rem 0.85rem;
@@ -152,7 +148,7 @@ layout: page
                                 border:1px solid var(--btn-border, #ced4da);
                                 text-decoration:none;
                                 transition:background 0.15s, color 0.15s;">
-                        {{ stag }}
+                        {{ label }}
                       </a>
                     {% endfor %}
                   </div>
