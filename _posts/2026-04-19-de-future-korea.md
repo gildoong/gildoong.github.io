@@ -5,6 +5,7 @@ categories: [Data Engineering, 프로젝트]
 tags: [Data Engineering,Data Analytic, DE, DA, AI, career]
 description: 신입 DE를 목표로 하는 입장에서 솔직하게 바라본 채용 시장 현황과 앞으로 살아남기 위한 방향성 정리
 subcategory: 커리어 분석
+subcategory_tag: career
 ---
 
 ## 먼저, 불편한 진실부터
