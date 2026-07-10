@@ -1,59 +1,66 @@
 ---
 layout: page
-# Custom category layout - filters posts by both parent and current category
+# 대분류 카테고리 페이지 — 해당 대분류에 속한 포스트만 표시
 ---
 
 {% include lang.html %}
 
-{% assign category_name = page.title %}
+{% assign top_name = page.title %}
 
-{% comment %} URL에서 상위 카테고리를 추론: referer 대신 포스트 필터링으로 처리 {% endcomment %}
-{% comment %}
-  개념 정리 같은 중분류는 여러 대분류에 걸쳐 있다.
-  해결책: page.posts (jekyll-archives가 넘겨주는 포스트 목록) 를 그대로 쓰되,
-  동시에 URL의 상위 경로를 파악할 수 없으므로
-  대분류(categories[0])별로 그루핑해서 섹션 구분으로 보여준다.
-{% endcomment %}
+{% comment %} 이 대분류에 속한 포스트만 필터링 {% endcomment %}
+{% assign filtered_posts = "" | split: "" %}
+{% for post in site.posts %}
+  {% if post.categories[0] == top_name %}
+    {% assign filtered_posts = filtered_posts | push: post %}
+  {% endif %}
+{% endfor %}
 
 <div id="page-category">
   <h1 class="ps-lg-2">
     <i class="far fa-folder-open fa-fw text-muted"></i>
-    {{ page.title }}
-    <span class="lead text-muted ps-2">{{ page.posts | size }}</span>
+    {{ top_name }}
+    <span class="lead text-muted ps-2">{{ filtered_posts | size }}</span>
   </h1>
 
-  {% comment %} 대분류 목록 수집 {% endcomment %}
-  {% assign top_cats = "" | split: "" %}
-  {% for post in page.posts %}
-    {% assign top = post.categories[0] %}
-    {% unless top_cats contains top %}
-      {% assign top_cats = top_cats | push: top %}
-    {% endunless %}
+  {% comment %} 중분류별로 그루핑 {% endcomment %}
+  {% assign sub_cats = "" | split: "" %}
+  {% for post in filtered_posts %}
+    {% assign sc = post.categories[1] %}
+    {% if sc %}
+      {% unless sub_cats contains sc %}
+        {% assign sub_cats = sub_cats | push: sc %}
+      {% endunless %}
+    {% endif %}
   {% endfor %}
-  {% assign top_cats = top_cats | sort %}
+  {% assign sub_cats = sub_cats | sort %}
 
-  {% if top_cats.size > 1 %}
-    {% comment %} 대분류가 여러 개면 섹션 구분해서 표시 {% endcomment %}
-    {% for top in top_cats %}
-      <h3 class="ps-lg-2 mt-4 text-muted" style="font-size:1rem; font-weight:600; letter-spacing:0.03em;">
-        <i class="far fa-folder fa-fw"></i> {{ top }}
-      </h3>
-      <ul class="content ps-0">
-        {% for post in page.posts %}
-          {% if post.categories[0] == top %}
-            <li class="d-flex justify-content-between px-md-3">
-              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-              <span class="dash flex-grow-1"></span>
-              {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    {% endfor %}
-  {% else %}
-    {% comment %} 대분류가 하나면 그냥 리스트 {% endcomment %}
+  {% for sc in sub_cats %}
+    <h3 class="ps-lg-2 mt-4" style="font-size:0.95rem; font-weight:600; color:var(--text-muted-color, #888); letter-spacing:0.02em; border-bottom:1px solid var(--border-color, #e0e0e0); padding-bottom:0.3rem;">
+      <i class="far fa-folder fa-fw"></i> {{ sc }}
+    </h3>
     <ul class="content ps-0">
-      {% for post in page.posts %}
+      {% for post in filtered_posts %}
+        {% if post.categories[1] == sc %}
+          <li class="d-flex justify-content-between px-md-3">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <span class="dash flex-grow-1"></span>
+            {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endfor %}
+
+  {% comment %} 중분류 없는 포스트 처리 {% endcomment %}
+  {% assign no_sub = "" | split: "" %}
+  {% for post in filtered_posts %}
+    {% if post.categories[1] == nil or post.categories[1] == "" %}
+      {% assign no_sub = no_sub | push: post %}
+    {% endif %}
+  {% endfor %}
+  {% if no_sub.size > 0 %}
+    <ul class="content ps-0 mt-3">
+      {% for post in no_sub %}
         <li class="d-flex justify-content-between px-md-3">
           <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
           <span class="dash flex-grow-1"></span>
