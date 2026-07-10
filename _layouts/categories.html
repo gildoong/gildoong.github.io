@@ -83,7 +83,6 @@ layout: page
           {% for sub_cat in sub_categories %}
             {% assign sub_index = forloop.index %}
 
-            {% comment %} 이 중분류에 해당하는 포스트만 카운트 {% endcomment %}
             {% assign sub_posts = "" | split: "" %}
             {% for post in top_posts %}
               {% if post.categories[1] == sub_cat %}
@@ -92,7 +91,6 @@ layout: page
             {% endfor %}
             {% assign sub_posts_size = sub_posts | size %}
 
-            {% comment %} subcategory 이름 + tag 수집 (중복 제거) {% endcomment %}
             {% assign sub_items = "" | split: "" %}
             {% for post in sub_posts %}
               {% if post.subcategory and post.subcategory_tag %}
@@ -108,8 +106,9 @@ layout: page
               <div class="d-flex justify-content-between align-items-center">
                 <span>
                   <i class="far fa-folder fa-fw"></i>
-                  {% capture _sub_ctg_url %}/categories/{{ sub_cat | slugify | url_encode }}/{% endcapture %}
-                  <a href="{{ _sub_ctg_url | relative_url }}" class="mx-2">{{ sub_cat }}</a>
+                  {% comment %} 중분류 클릭 시 → 대분류 페이지로 이동 (앵커로 해당 섹션 이동 예정) {% endcomment %}
+                  {% capture _top_url %}/categories/{{ top_name | slugify | url_encode }}/{% endcapture %}
+                  <a href="{{ _top_url | relative_url }}" class="mx-2">{{ sub_cat }}</a>
                   <span class="text-muted small font-weight-light">
                     {{ sub_posts_size }}
                     {% if sub_posts_size > 1 %}
