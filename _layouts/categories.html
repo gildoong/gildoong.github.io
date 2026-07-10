@@ -106,9 +106,9 @@ layout: page
               <div class="d-flex justify-content-between align-items-center">
                 <span>
                   <i class="far fa-folder fa-fw"></i>
-                  {% comment %} 중분류 클릭 시 → 대분류 페이지로 이동 (앵커로 해당 섹션 이동 예정) {% endcomment %}
-                  {% capture _top_url %}/categories/{{ top_name | slugify | url_encode }}/{% endcapture %}
-                  <a href="{{ _top_url | relative_url }}" class="mx-2">{{ sub_cat }}</a>
+                  {{- " " -}}
+                  {% comment %} 중분류는 링크 없이 텍스트만 표시 {% endcomment %}
+                  <span class="mx-2">{{ sub_cat }}</span>
                   <span class="text-muted small font-weight-light">
                     {{ sub_posts_size }}
                     {% if sub_posts_size > 1 %}
