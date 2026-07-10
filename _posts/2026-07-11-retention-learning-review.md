@@ -8,6 +8,13 @@ tags: [retention, dau, mau, wau, stickiness, cohort, classic-retention, rolling-
 description: 리텐션이라는 단어는 알고 있었지만 제대로 공부해보니 생각보다 몰랐던 게 많았다. 읽으면서 인상 깊었던 부분들을 정리해봤다.
 ---
 
+> **참고 자료**
+> - [클래식 리텐션](https://datarian.io/blog/classic-retention)
+> - [롤링 리텐션](https://datarian.io/blog/rolling-retention)
+> - [범위 리텐션](https://datarian.io/blog/range-retention)
+> - [Stickiness](https://datarian.io/blog/stickiness)
+> - [리텐션 분석하기](https://datarian.io/blog/retention-analysis)
+
 리텐션이라는 단어는 진작부터 알고 있었다. 재방문율, 유저가 얼마나 돌아오느냐. 그 정도로 이해하고 있었고, 솔직히 그걸로 충분하다고 생각했다.
 
 그런데 막상 제대로 공부해보니 내가 알고 있다고 착각했던 것들이 꽤 있었다. 이 글은 그 과정에서 인상 깊었던 부분들을 정리한 것이다.
