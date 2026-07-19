@@ -1,7 +1,7 @@
 ---
 title: 내가 사용하는 서비스에서 리텐션을 의도한 장치 찾아보기 - 와이즐리
 date: 2026-07-18 09:00:00 +0900
-categories: [Data Analytics, AARRR]
+categories: [Data Analytics, 개념정리]
 tags: [리텐션, AARRR, 그로스, 제품분석, 와이즐리, 재입고알림]
 subcategory_tag: aarrr
 ---
