@@ -2,7 +2,7 @@
 title: "내가 사용하는 서비스에서 리텐션을 의도한 장치 찾아보기 — 와이즐리"
 date: 2026-07-18 09:00:00 +0900
 categories: [Data Analytics, 서비스 분석]
-subcategory: 와이즐리
+subcategory: AARRR
 subcategory_tag: wisely
 tags: [retention, aarrr, growth, ecommerce, wisely, restock-alert, case-study]
 description: 내가 실제로 쓰는 와이즐리에서 리텐션을 의도한 장치를 찾아보고, 재입고 알림과 출시 예정 상품 기능이 어떻게 재방문을 만드는지 정리해봤다.
